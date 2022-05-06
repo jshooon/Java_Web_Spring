@@ -6,8 +6,8 @@ Database : MySQL
 Tools : Eclipse, MySQL Workbench   
 
 * chap00   
- 1. 기본 Spring Framework
- 2. 구구단
+ * 기본 Spring Framework
+ * 구구단
 * chap01 : user 정보가 저장된 text파일을 이용한 CRUD 기능 만들기   
 * chap02 : Mysql에 저장된 정보를 호출하고 CRUD 기능 만들기.   
 * chap03 : Lamda, Anonymous, Array, Thread   
