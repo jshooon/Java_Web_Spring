@@ -1,0 +1,15 @@
+CSS Layout
+ - Position(absolute, realtive)
+ - float(left, right, both)
+
+ html 화면은 기본적으로 nomal flow 방식적용
+ - inline, block 요소들
+ - 왼쪽 ~ 오른쪽
+ - 윗쪽 ~ 아랫쪽
+
+ Nomal Flow 배치 방식을 벗어난 흐름 적용
+ - float : right;
+
+ div 태그는 block 요소 
+ - 위에서 아래로 한행에 한개씩 배치
+ - float 적용하면 한행에 다수개도 가능, 오른쪽부터 배치가능하다.

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tjoeun.mapper.UserMapper">
+<!-- 셀렉트 문장을 등록 할거고 id 는 mapper interface메소드와 같아야한다. -->
+<!-- "com.tjoeun.vo.User" 메소드가 리턴하는 객체에 클래스와 패키지 경로. 결과의 객체  -->
+    <select id="getUserById" 
+        resultType="com.tjoeun.vo.User" 
+        parameterType="String"> <!-- getUserById 파라미터 타입 -->
+        SELECT uid,pwd,name,phone
+        FROM users
+        WHERE uid = #{uid} <!-- ?와 같다 -->
+    </select>
+    
+    <select id="login" 
+        resultType="String" 
+        parameterType="com.tjoeun.vo.User">
+        SELECT uid
+        FROM users
+        WHERE uid = #{uid} AND pwd = #{pwd} <!-- ?와 같다 -->
+    </select>
+    
+    
+    <select id="loginCheck" 
+        resultType="com.tjoeun.vo.User">
+        SELECT uid,pwd,name,phone
+        FROM users
+        WHERE uid = #{uid} AND pwd = #{pwd} <!-- ?와 같다 -->
+    </select>
+    
+    <select id="getUserList" 
+        resultType="com.tjoeun.vo.User"> <!-- User의 객체를 자동으로 만들어 여러개 User객체에 담아서 리턴 -->
+        SELECT *
+        FROM users
+    </select>
+    
+    <!-- 한사람의 정보가 map에 저장되어 List에 다시 저장된 후 리턴 -->
+    <select id="getUserMap" 
+        resultType="map"> <!-- map으로 포장하여 List로 감싸서 보내달라는뜻. -->
+        SELECT uid,pwd,name,phone
+        FROM users
+    </select>
+    
+    <!--insert 요소는 resultType 속성이 없어도 생성된 행의 수(정수)가 리턴됨-->
+    <insert id="insertUser" 
+       parameterType="com.tjoeun.vo.User">
+       INSERT INTO users VALUES(#{uid},#{pwd},#{name},#{phone})
+    </insert>
+    
+   <!-- 한 행을 추가하고 자동증가필드의 값을 파라미터 객체의 num변수에 할당-->
+   <!-- 유저에 넘이라는 변수가 있다면 자동증가된 값이 들어간다. -->
+   <!-- useGeneratedKeys true는 자동증가필드 를 사용한다는뜻 키프로퍼티 : 객체속성(컬럼명)은 넘이다 -->
+   <insert id="addAndGetKey" useGeneratedKeys="true" keyProperty="num"
+        parameterType="com.tjoeun.vo.User"> 
+      INSERT INTO users VALUES(NULL,#{uid},#{pwd},#{name},#{phone}) <!-- 널주고 자동증가필드 값이 넘으로 넘어간다. -->
+   </insert>
+
+    <!--update 요소는 resultType 속성이 없어도 변경된 행의 수(정수)가 리턴됨-->
+    <update id="updateUser" 
+       parameterType="com.tjoeun.vo.User">
+       UPDATE users 
+       SET phone=#{phone}
+       WHERE uid=#{uid}
+    </update>
+    
+    <update id="updateByMap" 
+       parameterType="map">
+       UPDATE users 
+       SET phone=#{phone}
+       WHERE uid=#{uid}
+    </update>
+
+    <!--delete 요소는 resultType 속성이 없어도 변경된 행의 수(정수)가 리턴됨-->
+    <delete id="deleteUser" 
+    parameterType="com.tjoeun.vo.User">
+       DELETE FROM users WHERE uid=#{uid}
+    </delete>
+</mapper>

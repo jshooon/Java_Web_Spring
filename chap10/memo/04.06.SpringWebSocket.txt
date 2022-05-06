@@ -1,0 +1,12 @@
+WebSoket
+ - 채팅
+ - 판매자/구매자 간의 직접적인 통신
+ - 게임 네트워크 응용가능
+ - 일대일, 일대다 방식의 통신 가능
+
+https://mvnrepository.com/ 접속 
+Spring Boot Starter websocket 검색
+디펜던시 복사 하여 붙여넣고 버전 정보를 지우고 저장하면
+스프링이 알아서 맞는 버전을 맞춰준다.
+
+onkeypress 키보드를 키를 누를 때마다 js함수가 실행된다.

@@ -1,0 +1,15 @@
+ Drag & Drop
+ - html5 버전 부터 javascript기능 사용가능.
+ - javascript
+ - Event Handler 구현 (이벤트에 반응하기위한 함수)
+ - draggable 속성 추가 draggable 속성을 가진 태그들은 마우스로 drag가 가능하게된다.
+
+장바구니 
+
+@SessionAttributes
+@SessionAttribute
+
+세션에 저장된 cart정보를 쉽게 가져올 수 있다.
+
+PageInfo<Map<String,Object>> pi = new PageInfo<>(idao.list());
+		System.out.println("페이지 1 : " + pi.getNavigatepageNums().length);

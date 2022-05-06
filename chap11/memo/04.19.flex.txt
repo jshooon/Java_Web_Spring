@@ -1,0 +1,12 @@
+flex : div태그 하나를 flex inline-flex를 해주고, flex-wrap : warp을 해줌으로써 flex태그 하위div 들이
+flex박스를 벗어나지 못하게 하며, width로 폭을 정하여 하위div태그의 폭을 정하면,
+한 flex박스안에 한행에 몇열을 넣을 수 있는지 정할 수 있다.
+
+ 리스트 보여주기
+ - 페이징
+ - 앨범 스타일로 화면에 4개씩
+ - 2개 컬럼
+
+ex)
+flex 박스의 width가 210px; 하위div태그의 width가 100px;라 한다면, 한 flex박스태그에는 2열만 올 수 있다.
+

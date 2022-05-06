@@ -1,0 +1,57 @@
+select의 option을 선택하는 순간 서버로 요청하는법
+화면이 바뀌지 않는법.
+
+ form 태그 안에 사용되는 컨트롤
+ - SELECT태그 : 다수개를 제시하고 선택하게 함.
+
+  <select id = "hobby" name = "hobby">
+	<option value = "movie">영화</option>
+	<option value = "game">게임</option>
+	<option value = "trip">여행</option>
+	<option value = "nap">낮잠</option>
+  </select>
+
+onchange속성을 사용하여, 이벤트를 발생하고,
+셀렉트 id값을 저장한뒤, 제이슨 오브젝트에 넣어서,
+ajax방식으로 값을 서버에 요청을 보낼 수 있다.
+
+ex)
+
+<script>
+	function selectChange(){
+		var hobby = $('#hobby').val(); // select태그 id값
+// 		alert('선택한 취미 : ' + hobby);
+		
+		var obj = {};
+		obj.hobby = hobby;
+		$.ajax({
+			url : '/ui/form/select',
+			method : 'post',
+			cache : false,
+			data : obj,
+			dataType : 'json',
+			success : function(res){
+				//alert(JSON.stringify(res)); // 제이슨을 문자열로 변환.
+				$('#res').text(res.msg);
+			},
+			error : function(xhr, status, err){
+				alert('에러 : ' + xhr + status + err);
+			}
+			
+		});
+	}
+</script>
+</head>
+<body>
+<h3>SELECT 이벤트 처리하기 예제</h3>
+<form>
+  <select id = "hobby" name = "hobby" onchange="selectChange();">
+	<option value = "movie">영화</option>
+	<option value = "game">게임</option>
+	<option value = "trip">여행</option>
+	<option value = "nap">낮잠</option>
+  </select>
+</form>
+<hr>
+<p>
+<div id = "res"></div>

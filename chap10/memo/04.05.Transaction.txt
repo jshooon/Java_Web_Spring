@@ -1,0 +1,21 @@
+Transaction : 동시에 작업해야하는 최소단위.
+ - 한번에 실행해야 하는 다수개의 SQL작업
+ - 게시글 저장, 첨부파일정보 저장, 첨부파일 저장. 나눌수없는 한 작업에 속한다.
+ - 예를 들어 계좌이체는 A은행 -> B은행,
+   A와 B은행에서는 업데이트가 필요함. 두개의 작업이 하나의 Transaction으로 통한다.
+
+ @Service
+class BoardSVC{
+	@Transactional(rollbackFor={Exception.class}) // 어떤 예외가 발생하면 데이터를 원상복구한다.
+	public String saveBoard(BoardVO board, MultipartFile[] mfiles){
+		dao.saveBoard(board); // 게시글 저장(board 테이블)
+		for(int i = 0; i < mriles.length; i++){
+			this.saveFileInfo(files[i]);	// 파일정보 저장(attach).
+		}
+		// throw new Excetion("저장 중 오류 발생"); // @Transactional이 제대로 작동하는지 본다.
+		fileSave(mfiles[i]);	//서버측 파일 시스템에 파일 저장.
+	}
+}
+
+한메소드에서 세가지의 일을 작업하지만, 만약 하나라도 잘못된다면, Transactional 어노테이션을 사용한다.
+
