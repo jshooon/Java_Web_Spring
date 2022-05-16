@@ -1,5 +1,6 @@
 # Java_Web_Spring 정규수업
 
+OS : Windows 10
 Languages : Java, HTML, CSS, JS   
 Framework : Spring Framework   
 Database : MySQL   
